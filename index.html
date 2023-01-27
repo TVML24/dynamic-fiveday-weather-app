@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Day Weather Dashboard</title>
+    <link rel="stylesheet" href="assets/reset.css">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class = "main-flex-container">
+        <aside>
+            <div id="search-div">
+                <h2>Search for a City!</h2>
+                <input type= "text" name="city-search" id="city-search">
+                <button type="button" id="search-button">Search!</button>
+            </div>
+            <div id="previous-searches"></div>
+        </aside>
+        <main>
+            <section id="current-weather"></section>
+            <section id="five-day-forecast">
+                <div id="title-div"></div>
+                <div id="card-box"></div> 
+            </section>
+        </main>
+    </div>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
