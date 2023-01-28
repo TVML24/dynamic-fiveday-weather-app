@@ -47,3 +47,65 @@ main {
     background: lightcoral;
     width: 75%;
 }
+
+.main-flex-container {
+    display: flex;
+}
+
+/* styles the current temperature box and it's content */
+#current-weather {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 3%;
+}
+
+.today-header {
+    width: 100%;
+}
+
+.left-current-div {
+    width: 15%;
+}
+.right-current-div {
+    width: 85%;
+}
+
+.current-icon {
+    height: 100px;
+    width: 120px;
+}
+
+.current-list {
+    margin-top: 2%;
+    font-size: 20px;
+}
+
+.current-list li {
+    margin-top: 3%;
+}
+
+/* This styling is for the items in the card box*/
+
+#card-box {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.weather-card {
+    background: orange;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.card-list li {
+    margin-top: 10%;
+}
+
+.date-title {
+    margin-bottom: 3%;
+}
