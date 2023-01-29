@@ -202,23 +202,3 @@ main {
     }
 }
 
-@media screen and (max-width: 640px) {
-    .weather-card {
-        width: 80%;
-        margin-bottom: 3%;
-    }
-    .main-flex-container {
-        flex-direction: column;
-    }
-    main {
-        width: 100%;
-    }
-    aside {
-        width: 100%;
-        padding-bottom: 3%;
-    }
-    .pre-button {
-        width: 70%;
-        margin-left: 15%;
-    }
-}
