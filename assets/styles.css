@@ -1,16 +1,23 @@
+:root {
+    --background: #D5E4DD;
+    --contrastbackground: rgb(106, 106, 223);
+    --panel: #C1DAC1;
+}
+
 main {
-    height: 887px;
+    min-height: 887px;
 }
 
 header {
-    background: blue;
+    background: var(--contrastbackground);
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 
 h1 {
-    font-size: 36px;
+    font-family:'Great Vibes', cursive;
+    font-size: 40px;
     padding-top: 1%;
     padding-bottom: 1%;
     margin-right: 5%;
@@ -20,8 +27,13 @@ aside {
     display: flex;
     padding-top: 3%;
     flex-direction: column;
-    background: yellow;
+    background: var(--background);
     width: 25%;
+}
+
+
+aside h2 {
+    margin-bottom: 5%;
 }
 
 #search-div {
@@ -31,8 +43,9 @@ aside {
 }
 
 h2 {
+    font-family: 'EB Garamond', serif;
     margin-top: 3%;
-    font-size: 28px;
+    font-size: 32px;
 }
 
 #city-search {
@@ -41,6 +54,7 @@ h2 {
     width: 75%;
     padding-top: 1%;
     padding-bottom: 1%;
+    border-radius: 10px;
 }
 
 #search-button {
@@ -48,13 +62,22 @@ h2 {
     font-size: 22px;
     width: 75%;
     margin-bottom: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     background: purple;
     color: azure;
+    font-family: 'Roboto Slab', serif;
+}
+
+#search-button:hover {
+    background: blueviolet;
 }
 
 main {
-    background: lightcoral;
+    background: var(--background);
     width: 75%;
+    padding-top: 1%;
+    padding-right: 1%;
 }
 
 .main-flex-container {
@@ -65,9 +88,19 @@ main {
 #current-weather {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 4%;
+    padding-top: 2%;
     padding-bottom: 4%;
     padding-left: 3%;
+    margin-bottom: 4%;
+    background: var(--panel);
+    border-radius: 10px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+}
+
+#current-weather h2 {
+    margin-bottom: 4%;
+    text-decoration: underline;
 }
 
 .today-header {
@@ -104,12 +137,13 @@ main {
 }
 
 .weather-card {
-    background: orange;
+    background: var(--contrastbackground);
     padding-top: 3%;
     padding-bottom: 3%;
     padding-left: 2%;
     padding-right: 2%;
     border-radius: 8px;
+    font-family: 'Roboto Slab', serif;
 }
 
 .card-list li {
@@ -121,12 +155,6 @@ main {
 }
 
 /* This styling is for the buttons that relate to previous searches */
-/* .previous-searches {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-} */
-
 .pre-button {
     width: 90%;
     margin-top: 3%;
@@ -134,4 +162,63 @@ main {
     padding-top: 1%;
     padding-bottom: 1%;
     font-size: 22px;
+    border-radius: 10px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.pre-button:hover {
+    color: antiquewhite;
+    background: blueviolet;
+}
+
+@media screen and (max-width: 1842px){
+    .weather-card {
+        margin-bottom: 3%;
+    }
+}
+
+
+@media screen and (max-width: 899px) {
+    #current-weather {
+        flex-direction: column;
+    }
+    .weather-card {
+        width: 80%;
+        margin-bottom: 3%;
+    }
+    .main-flex-container {
+        flex-direction: column;
+    }
+    main {
+        width: 100%;
+    }
+    aside {
+        width: 100%;
+        padding-bottom: 3%;
+    }
+    .pre-button {
+        width: 70%;
+        margin-left: 15%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .weather-card {
+        width: 80%;
+        margin-bottom: 3%;
+    }
+    .main-flex-container {
+        flex-direction: column;
+    }
+    main {
+        width: 100%;
+    }
+    aside {
+        width: 100%;
+        padding-bottom: 3%;
+    }
+    .pre-button {
+        width: 70%;
+        margin-left: 15%;
+    }
 }
