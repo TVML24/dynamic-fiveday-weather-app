@@ -25,11 +25,15 @@ var ninePm = "21:00:00";
 // page variables and event listeners
 var currentBox = document.getElementById('current-weather');
 var cardBox = document.getElementById('card-box');
+var cityInput = document.getElementById('city-search');
 var searchBtn = document.getElementById('search-button');
+var prevbuttonBox = document.getElementById('previous-searches');
 
+searchBtn.addEventListener("click", searchAPI)
 
 // FUNCTION ONE: function that loads on open, and fetches weather info for adelaide. PASSES TO TWO.
-function loadonOpen() {
+function fetchWeather (cityName) {
+    buildButtons();
     if (!cityName) {
         var cityName = "Adelaide";
     }
@@ -43,11 +47,12 @@ function loadonOpen() {
         })
         .then(function (locResults) {
             compileToday(locResults);
-            // compileotherDays(locResults);
         }) 
 
+// Warns the user if they have misspelt their query
         .catch(function (error) {
             console.error(error);
+            currentBox.textContent = "Sorry, no city by that name!";
         });
 
     }
@@ -194,7 +199,7 @@ function compileToday(locResults) {
         }
 }
 }
-// FUNCTION TWO: function that dynamically creates content inside the divs on the page. PASSES TO THREE.
+// FUNCTION THREE: function that dynamically creates content inside the divs on the page.
 function printCards({tempmax, humidity, wind, icon, city, date}) {
     if (date === currentDate) {
         var cardheaderDiv = document.createElement('div');
@@ -251,17 +256,69 @@ function printCards({tempmax, humidity, wind, icon, city, date}) {
     }
 }
 
-loadonOpen();
+// FUNCTION FOUR: function that assembles a new fetch query for new searches. PASSES TO TWO.
+function searchAPI () {
+    clearBoxes();
+    clearButtons();
+    var cityName = cityInput.value.trim();
+    storeCity(cityName);
+    fetchWeather(cityName);
+}
+// FUNCTION FIVE (a + b): Functions that clear page of dynamic elements to make way for new ones.
+function clearBoxes() {
+    while (currentBox.firstChild) {
+        currentBox.removeChild(currentBox.lastChild);
+     }
+    while (cardBox.firstChild) {
+        cardBox.removeChild(cardBox.lastChild);
+     }
+}
 
+function clearButtons() {
+    while (prevbuttonBox.firstChild) {
+        prevbuttonBox.removeChild(prevbuttonBox.lastChild);
+     }
+}
 
-// FUNCTION THREE: function that stores the fetched content in local storage (the whole object?) and creates a button in the past searches div
-// if pastsearch = true will not save in local storage and will return
-// will change pastsearch to false again.
+// FUNCTION SIX: Function that saves searched citynames in local storage.
+function storeCity(cityName) {
+    var holderArray = {};
+    if ("cityName" in localStorage) {
+            holderArray = JSON.parse(localStorage.getItem("cityName"));
+            holderArray = holderArray + " " + cityName;
+            // holderArray.push(cityName);
+            localStorage.setItem("cityName", JSON.stringify(holderArray));
+    
+    } else { 
+            localStorage.setItem("cityName", JSON.stringify(cityName));
+    }        
+    cityInput.value = "";
+    buildButtons();
+}
 
-// FUNCTION FIVE: function that compares searches to previous searches to work out whether to fetch from local storage or the API to be used from search button
-// this will trigger a variable pastSearch = true
-// this will stop FUNCTION THREE from saving it a second time in local storage and stop a new button from being created
-
-// FUNCTION SIX: function that assembles a new fetch query for new searches. PASSES TO TWO.
-
-// FUNCTION SEVEN: function that retrieves the information stored in local storage. PASSES TO TWO.
+//FUNCTION SEVEN: Function that builds the buttons containing previous searches from data pulled from local storage
+function buildButtons() {
+        clearButtons();
+    if ("cityName" in localStorage) {
+        var holderString = JSON.parse(localStorage.getItem("cityName"));
+        console.log(holderString);
+        var splitString = holderString.split(" ");
+        for (i=0; i < splitString.length; i++) {
+            var selectedValue = splitString[i];
+            var newButton = document.createElement('button');
+                newButton.className += "pre-button";
+                newButton.textContent = selectedValue;
+                prevbuttonBox.append(newButton);
+                
+                newButton.addEventListener("click", function (event){
+                tempVal = event.currentTarget;
+                cityName = tempVal.textContent;
+                clearBoxes();
+                fetchWeather(cityName);
+                })
+        }
+    } else {
+        return;
+    }
+}
+fetchWeather();

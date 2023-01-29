@@ -1,3 +1,7 @@
+main {
+    height: 887px;
+}
+
 header {
     background: blue;
     width: 100%;
@@ -14,8 +18,8 @@ h1 {
 
 aside {
     display: flex;
+    padding-top: 3%;
     flex-direction: column;
-    justify-content: center;
     background: yellow;
     width: 25%;
 }
@@ -35,12 +39,17 @@ h2 {
     margin-top: 3%;
     font-size: 22px;
     width: 75%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 #search-button {
     margin-top: 3%;
     font-size: 22px;
     width: 75%;
+    margin-bottom: 3%;
+    background: purple;
+    color: azure;
 }
 
 main {
@@ -100,6 +109,7 @@ main {
     padding-bottom: 3%;
     padding-left: 2%;
     padding-right: 2%;
+    border-radius: 8px;
 }
 
 .card-list li {
@@ -108,4 +118,20 @@ main {
 
 .date-title {
     margin-bottom: 3%;
+}
+
+/* This styling is for the buttons that relate to previous searches */
+/* .previous-searches {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.pre-button {
+    width: 90%;
+    margin-top: 3%;
+    margin-left: 4%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 22px;
 }
